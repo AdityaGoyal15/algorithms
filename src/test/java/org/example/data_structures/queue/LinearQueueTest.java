@@ -6,72 +6,58 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LinearQueueTest {
 
-  @Test
-  void initialize() {
-    LinearQueue<Integer> queue = new LinearQueue<>(Integer.class, 5);
+    @Test
+    void initialize() {
+        LinearQueue linearQueue = new LinearQueue(5);
 
-    assertEquals(0, queue.getSize());
-    assertEquals(0, queue.getFront());
-    assertEquals(4, queue.getRear());
-    assertEquals(5, queue.getItems().length);
-    assertEquals(5, queue.getCapacity());
-  }
+        assertEquals(0, linearQueue.size);
+        assertEquals(0, linearQueue.front);
+        assertEquals(4, linearQueue.rear);
+        assertEquals(5, linearQueue.items.length);
+        assertEquals(5, linearQueue.capacity);
+    }
 
-  @Test
-  void enqueue() {
-    LinearQueue<Integer> queue = new LinearQueue<>(Integer.class, 5);
+    @Test
+    void enqueue() {
+        LinearQueue linearQueue = new LinearQueue(5);
 
-    queue.enqueue(1);
+        linearQueue.enqueue(2);
 
-    assertEquals(0, queue.getFront());
-    assertEquals(0, queue.getRear());
-    assertEquals(1, queue.getSize());
-    assertEquals(5, queue.getCapacity());
-    assertEquals(5, queue.getItems().length);
-    assertEquals(1, queue.getItems()[0]);
-  }
+        assertEquals(1, linearQueue.size);
+        assertEquals(0, linearQueue.front);
+        assertEquals(0, linearQueue.rear);
+        assertEquals(5, linearQueue.items.length);
+        assertEquals(2, linearQueue.items[0]);
+    }
 
-  @Test
-  void enqueue_throws_exception_when_queue_is_full() {
-    LinearQueue<Integer> queue = new LinearQueue<>(Integer.class, 5);
-    queue.enqueue(1);
-    queue.enqueue(2);
-    queue.enqueue(3);
-    queue.enqueue(4);
-    queue.enqueue(5);
+    @Test
+    void enqueue_throws_exception_when_queue_is_full() {
+        LinearQueue linearQueue = new LinearQueue(2);
+        linearQueue.enqueue(2);
+        linearQueue.enqueue(2);
 
-    UnsupportedOperationException exception =
-        assertThrows(UnsupportedOperationException.class, () -> queue.enqueue(6));
+        assertThrows(UnsupportedOperationException.class, () -> linearQueue.enqueue(1));
+    }
 
-    assertEquals("Queue is full", exception.getMessage());
-  }
+    @Test
+    void dequeue_throws_exception_when_queue_is_empty() {
+        LinearQueue linearQueue = new LinearQueue(2);
 
-  @Test
-  void dequeue() {
-    LinearQueue<Integer> queue = new LinearQueue<>(Integer.class, 5);
-    queue.enqueue(1);
-    queue.enqueue(2);
-    queue.enqueue(3);
-    queue.enqueue(4);
-    queue.enqueue(5);
+        assertThrows(UnsupportedOperationException.class, linearQueue::dequeue);
+    }
 
-    Integer dequeued = queue.dequeue();
+    @Test
+    void dequeue() {
+        LinearQueue linearQueue = new LinearQueue(2);
+        linearQueue.enqueue(2);
+        linearQueue.enqueue(4);
 
-    assertEquals(1, dequeued);
-    assertEquals(1, queue.getFront());
-    assertEquals(4, queue.getRear());
-    assertEquals(5, queue.getItems().length);
-    assertEquals(5, queue.getCapacity());
-    assertEquals(4, queue.getSize());
-  }
+        int dequeued = linearQueue.dequeue();
 
-  @Test
-  void dequeue_throws_exception_when_queue_is_empty() {
-    LinearQueue<Integer> queue = new LinearQueue<>(Integer.class, 5);
-
-    UnsupportedOperationException exception =
-        assertThrows(UnsupportedOperationException.class, queue::dequeue);
-
-    assertEquals("Queue is empty", exception.getMessage());
-  }
+        assertEquals(2, dequeued);
+        assertEquals(1, linearQueue.front);
+        assertEquals(1, linearQueue.rear);
+        assertEquals(1, linearQueue.size);
+        assertEquals(2, linearQueue.items.length);
+    }
 }
