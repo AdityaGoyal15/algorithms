@@ -6,11 +6,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class NodeTest {
 
-  @Test
-  void initialize() {
-    Node<Integer> node = new Node<>(1);
+    @Test
+    void initialize() {
+        Node node = new Node(1);
 
-    assertEquals(1, node.getData());
-    assertNull(node.getNext());
-  }
+        assertEquals(1, node.data);
+        assertNull(node.next);
+    }
 }

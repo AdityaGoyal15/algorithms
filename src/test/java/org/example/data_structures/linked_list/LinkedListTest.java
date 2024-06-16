@@ -6,47 +6,88 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LinkedListTest {
 
-  @Test
-  void add_when_head_is_null() {
-    LinkedList<Integer> list = new LinkedList<>();
+    @Test
+    void default_initialize() {
+        LinkedList linkedList = new LinkedList();
 
-    list.add(1);
+        assertNull(linkedList.head);
+    }
 
-    assertEquals(1, list.size());
-    Node<Integer> head = list.getHead();
-    assertEquals(1, head.getData());
-    assertNull(head.getNext());
-  }
+    @Test
+    void initialize_with_head() {
+        LinkedList linkedList = new LinkedList(new Node(2));
 
-  @Test
-  void add() {
-    LinkedList<Integer> list = new LinkedList<>(new Node<>(1));
+        assertNotNull(linkedList.head);
+        assertEquals(2, linkedList.head.data);
+        assertNull(linkedList.head.next);
+    }
 
-    list.add(2);
+    @Test
+    void add_when_head_is_null() {
+        LinkedList linkedList = new LinkedList();
 
-    assertEquals(2, list.size());
-    Node<Integer> head = list.getHead();
-    assertEquals(1, head.getData());
-    Node<Integer> next = head.getNext();
-    assertEquals(2, next.getData());
-    assertNull(next.getNext());
-  }
+        linkedList.add(2);
 
-  @Test
-  void size_when_head_is_null() {
-    LinkedList<Integer> list = new LinkedList<>();
+        assertEquals(1, linkedList.size());
+        assertEquals(2, linkedList.head.data);
+        assertNull(linkedList.head.next);
+    }
 
-    assertEquals(0, list.size());
-  }
+    @Test
+    void add_when_head_is_not_null() {
+        LinkedList linkedList = new LinkedList(new Node(2));
 
-  @Test
-  void size() {
-    Node<Integer> head = new Node<>(1);
-    LinkedList<Integer> list = new LinkedList<>(head);
+        linkedList.add(2);
 
-    list.add(2);
-    list.add(3);
+        assertEquals(2, linkedList.size());
+        assertEquals(2, linkedList.head.data);
+        assertEquals(2, linkedList.head.next.data);
+        assertNull(linkedList.head.next.next);
+    }
 
-    assertEquals(3, list.size());
-  }
+    @Test
+    void delete_when_head_is_null() {
+        LinkedList linkedList = new LinkedList();
+
+        assertThrows(UnsupportedOperationException.class, () -> linkedList.delete(2));
+    }
+
+    @Test
+    void delete_when_head_contains_target_value() {
+        LinkedList linkedList = new LinkedList(new Node(14));
+        linkedList.add(4);
+        linkedList.add(17);
+        linkedList.add(2);
+        linkedList.add(19);
+
+        linkedList.delete(14);
+
+        assertEquals(4, linkedList.size());
+    }
+
+    @Test
+    void delete() {
+        LinkedList linkedList = new LinkedList(new Node(14));
+        linkedList.add(4);
+        linkedList.add(17);
+        linkedList.add(2);
+        linkedList.add(19);
+
+        linkedList.delete(17);
+
+        assertEquals(4, linkedList.size());
+    }
+
+    @Test
+    void delete_when_target_not_found() {
+        LinkedList linkedList = new LinkedList(new Node(14));
+        linkedList.add(4);
+        linkedList.add(17);
+        linkedList.add(2);
+        linkedList.add(19);
+
+        linkedList.delete(7);
+
+        assertEquals(5, linkedList.size());
+    }
 }
