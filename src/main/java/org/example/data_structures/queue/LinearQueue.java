@@ -1,4 +1,4 @@
-package org.example.data_structures;
+package org.example.data_structures.queue;
 
 import java.lang.reflect.Array;
 

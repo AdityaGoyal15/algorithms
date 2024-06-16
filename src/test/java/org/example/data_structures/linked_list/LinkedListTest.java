@@ -1,4 +1,4 @@
-package org.example.data_structures;
+package org.example.data_structures.linked_list;
 
 import org.junit.jupiter.api.Test;
 
