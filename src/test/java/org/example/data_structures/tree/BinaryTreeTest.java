@@ -95,4 +95,30 @@ class BinaryTreeTest {
 
         assertFalse(tree.find(2));
     }
+
+    @Test
+    void height() {
+        Node root = new Node(21);
+        BinaryTree tree = new BinaryTree(root);
+        tree.add(1);
+        tree.add(27);
+        tree.add(2);
+        tree.add(31);
+        tree.add(7);
+
+        int height = tree.height(root);
+
+        assertEquals(4, height);
+    }
+
+    @Test
+    void breadth_first_search() {
+        BinaryTree tree = new BinaryTree(new Node(21));
+        tree.add(1);
+        tree.add(27);
+        tree.add(2);
+        tree.add(31);
+
+        tree.bfs();
+    }
 }

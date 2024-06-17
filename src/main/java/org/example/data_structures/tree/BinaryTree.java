@@ -86,4 +86,37 @@ public class BinaryTree {
     private int findSmallestValue(Node node) {
         return root.left == null ? root.data : findSmallestValue(node.left);
     }
+
+
+    public void bfs() {
+        int height = height(root);
+
+        for (int i = 1; i <= height; i++) {
+            printCurrentLevel(root, i);
+        }
+    }
+
+    private void printCurrentLevel(Node node, int level) {
+        if (node == null) {
+            return;
+        }
+
+        if (level == 1) {
+            System.out.print(node.data + " ");
+        } else if (level > 1) {
+            printCurrentLevel(node.left, level - 1);
+            printCurrentLevel(node.right, level - 1);
+        }
+    }
+
+    public int height(Node node) {
+        if (node == null) {
+            return 0;
+        } else {
+            int lheight = height(node.left);
+            int rheight = height(node.right);
+
+            return Math.max(lheight, rheight) + 1;
+        }
+    }
 }
