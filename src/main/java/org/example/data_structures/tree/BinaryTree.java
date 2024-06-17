@@ -119,4 +119,35 @@ public class BinaryTree {
             return Math.max(lheight, rheight) + 1;
         }
     }
+
+    public int distance(int node1, int node2) {
+        return calculateDistance(root, node1, node2);
+    }
+
+    private int calculateDistance(Node node, int a, int b) {
+        if (node == null) {
+            return 0;
+        }
+
+        if (node.data > a && node.data > b) {
+            return calculateDistance(node.left, a, b);
+        } else if (node.data < a && node.data < b) {
+            return calculateDistance(node.right, a, b);
+        } else if (node.data >= a && node.data <= b) {
+            return distanceFromRoot(node, a) + distanceFromRoot(node, b);
+        }
+
+        return 0;
+    }
+
+    private int distanceFromRoot(Node node, int target) {
+        if (node.data == target) {
+            return 0;
+        } else if (node.data < target) {
+            return 1 + distanceFromRoot(node.right, target);
+        } else {
+            return 1 + distanceFromRoot(node.left, target);
+        }
+    }
+
 }
