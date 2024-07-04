@@ -8,7 +8,7 @@ class StackTest {
 
   @Test
   void constructor() {
-    Stack stack = new Stack(5);
+    Stack<Integer> stack = new Stack<>(Integer.class, 5);
 
     assertEquals(-1, stack.top);
     assertEquals(5, stack.capacity);
@@ -17,7 +17,7 @@ class StackTest {
 
   @Test
   void push() {
-    Stack stack = new Stack(5);
+    Stack<Integer> stack = new Stack<>(Integer.class, 5);
 
     int topElement = stack.push(10);
 
@@ -27,7 +27,7 @@ class StackTest {
 
   @Test
   void throws_exception_when_stack_is_full() {
-    Stack stack = new Stack(5);
+    Stack<Integer> stack = new Stack<>(Integer.class, 5);
     stack.push(1);
     stack.push(2);
     stack.push(3);
@@ -41,7 +41,7 @@ class StackTest {
 
   @Test
   void throw_exception_when_stack_is_empty() {
-    Stack stack = new Stack(5);
+    Stack<Integer> stack = new Stack<>(Integer.class, 5);
 
     RuntimeException exception = assertThrows(RuntimeException.class, () -> stack.pop());
     assertEquals("Stack is empty", exception.getMessage());
@@ -49,7 +49,7 @@ class StackTest {
 
   @Test
   void pop() {
-    Stack stack = new Stack(5);
+    Stack<Integer> stack = new Stack<>(Integer.class, 5);
     stack.push(10);
     stack.push(20);
 
