@@ -7,30 +7,43 @@ import static org.junit.jupiter.api.Assertions.*;
 class StackTest {
 
   @Test
-  void throw_exception_when_stack_is_full() {
-    Stack stack = new Stack(3);
-    stack.push(1);
-    stack.push(2);
-    stack.push(3);
+  void constructor() {
+    Stack stack = new Stack(5);
 
-    RuntimeException exception = assertThrows(RuntimeException.class, () -> stack.push(4));
-    assertEquals("Stack is full", exception.getMessage());
+    assertEquals(-1, stack.top);
+    assertEquals(5, stack.capacity);
+    assertEquals(5, stack.elements.length);
   }
 
   @Test
   void push() {
     Stack stack = new Stack(5);
 
-    int result = stack.push(10);
+    int topElement = stack.push(10);
 
-    assertEquals(10, result);
+    assertEquals(0, stack.top);
+    assertEquals(10, topElement);
+  }
+
+  @Test
+  void throws_exception_when_stack_is_full() {
+    Stack stack = new Stack(5);
+    stack.push(1);
+    stack.push(2);
+    stack.push(3);
+    stack.push(4);
+    stack.push(5);
+
+    RuntimeException exception = assertThrows(RuntimeException.class, () -> stack.push(6));
+    assertEquals(4, stack.top);
+    assertEquals("Stack is full", exception.getMessage());
   }
 
   @Test
   void throw_exception_when_stack_is_empty() {
     Stack stack = new Stack(5);
 
-    RuntimeException exception = assertThrows(RuntimeException.class, stack::pop);
+    RuntimeException exception = assertThrows(RuntimeException.class, () -> stack.pop());
     assertEquals("Stack is empty", exception.getMessage());
   }
 
@@ -40,8 +53,9 @@ class StackTest {
     stack.push(10);
     stack.push(20);
 
-    int result = stack.pop();
+    int topElement = stack.pop();
 
-    assertEquals(20, result);
+    assertEquals(20, topElement);
+    assertEquals(0, stack.top);
   }
 }
