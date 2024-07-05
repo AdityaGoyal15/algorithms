@@ -14,6 +14,16 @@ public class QuickSort {
     }
     // choose a pivot
     int pivot = arr[highIndex];
+    int leftPointer = partition(arr, highIndex, pivot);
+    // swap the element where left and right pointer meet with the pivot
+    swap(arr, leftPointer, highIndex);
+    // sort the elements in the left subarray
+    quickSort(arr, lowIndex, leftPointer - 1);
+    // sort the elements in the right subarray
+    quickSort(arr, leftPointer + 1, highIndex);
+  }
+
+  private int partition(int[] arr, int highIndex, int pivot) {
     int leftPointer = 0;
     int rightPointer = highIndex;
     // proceed while left pointer run into right pointer
@@ -29,12 +39,7 @@ public class QuickSort {
       // swap when value at left pointer is greater and at right pointer less than compared to pivot
       swap(arr, leftPointer, rightPointer);
     }
-    // swap the element where left and right pointer meet with the pivot
-    swap(arr, leftPointer, highIndex);
-    // sort the elements in the left subarray
-    quickSort(arr, lowIndex, leftPointer - 1);
-    // sort the elements in the right subarray
-    quickSort(arr, leftPointer + 1, highIndex);
+    return leftPointer;
   }
 
   // swap
