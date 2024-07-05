@@ -57,7 +57,8 @@ public class LinkedList {
 
   public Node find(int data) {
     Node pointer = head;
-
+    // Set the pointer at the head and move it until it reached the node which has the data equal to
+    // the input. If found, return the node else return null
     while (pointer != null && pointer.data != data) {
       pointer = pointer.next;
     }
