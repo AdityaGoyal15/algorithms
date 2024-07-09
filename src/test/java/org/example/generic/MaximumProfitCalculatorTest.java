@@ -10,7 +10,7 @@ class MaximumProfitCalculatorTest {
   void find_max_profit() {
     int[] prices = {7, 1, 5, 3, 6, 4};
 
-    int maxProfit = MaximumProfitCalculator.findMaxProfit(prices);
+    int maxProfit = MaximumProfitCalculator.calculateMaxProfit(prices);
 
     assertEquals(5, maxProfit);
   }
@@ -19,7 +19,7 @@ class MaximumProfitCalculatorTest {
   void find_max_profit_when_price_never_increase() {
     int[] prices = {7, 6, 5, 5, 3, 2};
 
-    int maxProfit = MaximumProfitCalculator.findMaxProfit(prices);
+    int maxProfit = MaximumProfitCalculator.calculateMaxProfit(prices);
 
     assertEquals(0, maxProfit);
   }
