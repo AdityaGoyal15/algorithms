@@ -1,4 +1,4 @@
-package temp;
+package org.example.generic;
 
 import org.junit.jupiter.api.Test;
 
