@@ -9,7 +9,8 @@ public class MaximumProfitCalculator {
     int min = prices[0];
     int maxProfit = 0;
     int i = 1;
-
+    // Move forward and keep updating the minimum value from the array and the maximum difference between the next
+    // elements
     while (i < length) {
       if (prices[i] < min) {
         min = prices[i];
