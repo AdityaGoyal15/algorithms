@@ -2,6 +2,9 @@ package org.example.generic;
 
 import org.example.data_structures.stack.Stack;
 
+// The problem can be solved using stacks; when opening bracket is found, we push it in the stack;
+// when closing bracket is found, we pop an element from stack
+// At the end, if stack is empty, we can conclude that the input string has balanced brackets;
 public class BalancedBrackets {
 
   public boolean validate(String str) {
