@@ -36,4 +36,8 @@ public class Stack<T> {
 
     return elements[top--];
   }
+
+  public int getTop() {
+    return top;
+  }
 }
