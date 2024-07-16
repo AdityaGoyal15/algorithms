@@ -1,4 +1,4 @@
-package org.example.data_structures.array.generic;
+package org.example.generic;
 
 import org.junit.jupiter.api.Test;
 
