@@ -1,4 +1,4 @@
-package org.example.generic;
+package org.example.data_structures.array;
 
 import java.util.Arrays;
 import java.util.HashMap;

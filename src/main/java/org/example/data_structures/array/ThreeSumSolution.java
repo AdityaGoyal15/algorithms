@@ -1,4 +1,4 @@
-package org.example.generic;
+package org.example.data_structures.array;
 
 import org.example.data_structures.array.sort.QuickSort;
 
