@@ -1,10 +1,7 @@
 package org.example.data_structures.array;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-
-// map.put (2, 0)
 
 public class TwoSumProblem {
     public int[] findPair(int[] nums, int target) {

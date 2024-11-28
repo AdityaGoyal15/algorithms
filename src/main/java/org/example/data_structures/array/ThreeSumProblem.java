@@ -5,7 +5,7 @@ import org.example.data_structures.array.sort.QuickSort;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThreeSumSolution {
+public class ThreeSumProblem {
 
     public List<List<Integer>> findTriplets(int[] arr) {
         // Sort the array
