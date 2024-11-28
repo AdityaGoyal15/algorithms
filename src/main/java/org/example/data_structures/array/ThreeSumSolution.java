@@ -44,6 +44,7 @@ public class ThreeSumSolution {
                     j++;
                 }
             }
+
             i++;
         }
 
