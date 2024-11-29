@@ -4,7 +4,7 @@ public class MaximumSumOfContiguousSubArrayOfSizeK {
 
     // This is more widely known as sliding window problem
     public int findMaxSum(int N, int[] arr) {
-        int maxSum;
+        /*int maxSum;
         int tempSum = 0;
         // Calculate the sum of last N elements
         for (int i = arr.length - 1; i > arr.length - N - 1; i--) {
@@ -19,6 +19,21 @@ public class MaximumSumOfContiguousSubArrayOfSizeK {
             if (tempSum > maxSum) {
                 maxSum = tempSum;
             }
+        }
+
+        return maxSum;*/
+
+        int maxSum;
+        int tempSum = 0;
+        for (int i = arr.length - 1; i > arr.length - N - 1; i--) {
+            tempSum += arr[i];
+        }
+
+        maxSum = tempSum;
+
+        for (int i = 0; i < N; i++) {
+            tempSum = tempSum - arr[arr.length - N + i] + arr[i];
+            maxSum = Math.max(maxSum, tempSum);
         }
 
         return maxSum;

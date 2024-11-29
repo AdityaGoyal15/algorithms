@@ -1,21 +1,22 @@
 package org.example.data_structures.array;
 
 public class MaximumSumOfSubArray {
+
     public int findMaxSum(int[] arr) {
         int total = 0;
-        int result = arr[0];
+        int maxSum = 0;
 
-        for (int i = 1; i < arr.length; i++) {
+        for (int j : arr) {
             if (total < 0) {
                 total = 0;
             }
+            total += j;
 
-            total += arr[i];
-            if (total > result) {
-                result = total;
+            if (total > maxSum) {
+                maxSum = total;
             }
         }
 
-        return result;
+        return maxSum;
     }
 }

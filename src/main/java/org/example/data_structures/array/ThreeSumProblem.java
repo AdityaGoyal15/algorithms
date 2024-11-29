@@ -1,8 +1,7 @@
 package org.example.data_structures.array;
 
-import org.example.data_structures.array.sort.QuickSort;
-
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ThreeSumProblem {
@@ -16,38 +15,32 @@ public class ThreeSumProblem {
         // Then we move i and loop remaining values of arr[i] to check the same.
         // Improvement in processing time: Skip elements when arr[i] == arr[i-1]. They will have the same sum as previous iteration.
 
-        List<List<Integer>> result = new ArrayList<>();
-        new QuickSort().sort(arr);
-        int length = arr.length;
-        int i = 0;
+        List<List<Integer>> res = new ArrayList<>();
+        Arrays.sort(arr);
 
-        while (i < length) {
+        for (int i = 0; i < arr.length - 2; i++) {
             if (i > 0 && arr[i] == arr[i - 1]) {
                 i++;
                 continue;
             }
-
             int j = i + 1;
-            int k = length - 1;
+            int k = arr.length - 1;
 
             while (j < k) {
                 int sum = arr[i] + arr[j] + arr[k];
-
                 if (sum == 0) {
-                    result.add(List.of(arr[i], arr[j], arr[k]));
+                    res.add(Arrays.asList(arr[i], arr[j], arr[k]));
                     do {
                         j++;
-                    } while (j < k && arr[j] == arr[j - 1]);
-                } else if (sum > 0) {
-                    k--;
-                } else {
+                    } while (j < k && arr[j] == arr[j + 1]);
+                } else if (sum < 0) {
                     j++;
+                } else {
+                    k--;
                 }
             }
-
-            i++;
         }
 
-        return result;
+        return res;
     }
 }
